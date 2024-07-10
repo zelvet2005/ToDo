@@ -3,12 +3,24 @@
 }
 
 body {
-  background-color: #ffffb1; /* temporary */
+  background-image: url(bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  min-height: 100vh;
+  min-width: 100vw;
 }
 
 .todo-container {
-  width: 40%;
-  min-height: 200px;
-  margin: 8% auto 0 auto;
-  background-color: black; /* temporary */
+  width: 80vh;
+  min-height: 35vh;
+  margin: 20vh auto 0 auto;
+  padding: 1.5vh;
+  background-color: white;
+  border-radius: 4vh;
+  box-shadow: 1.5vh 1.75vh 3.5vh rgba(0, 0, 0, 0.5);
+}
+
+.finished-button {
+  float: right;
 }
