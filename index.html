@@ -7,39 +7,18 @@
   </head>
   <body>
     <div class="todo-container">
-      <div class="finished margin-bottom">
-        <button class="finished-button">Finished</button>
+      <nav class="navigation margin-bottom">
+        <button class="active-page-btn">Active</button>
+        <button class="finished-page-btn">Finished</button>
+      </nav>
+      <div class="add-task margin-bottom">
+        <form>
+          <input class="add-task-input" type="text" />
+          <button class="add-task-btn">+</button>
+        </form>
       </div>
-      <div class="input margin-bottom">
-        <input type="text" />
-        <button>&#8594;</button>
-      </div>
-      <div class="tasks">
-        <div class="task margin-bottom">
-          <input type="text" value="Your first task" disabled />
-          <button class="taskButtons">&#10004;</button>
-          <button class="taskButtons">
-            <span class="pencil">&#9999;</span>
-          </button>
-          <button class="taskButtons">&#10006;</button>
-        </div>
-        <div class="task margin-bottom">
-          <input type="text" value="Your first task" disabled />
-          <button class="taskButtons">&#10004;</button>
-          <button class="taskButtons">
-            <span class="pencil">&#9999;</span>
-          </button>
-          <button class="taskButtons">&#10006;</button>
-        </div>
-        <div class="task margin-bottom">
-          <input type="text" value="Your first task" disabled />
-          <button class="taskButtons">&#10004;</button>
-          <button class="taskButtons">
-            <span class="pencil">&#9999;</span>
-          </button>
-          <button class="taskButtons">&#10006;</button>
-        </div>
-      </div>
+      <div class="tasks"></div>
     </div>
+    <script src="script.js"></script>
   </body>
 </html>
