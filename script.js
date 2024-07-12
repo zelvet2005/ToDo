@@ -5,7 +5,9 @@ const addTaskInput = document.querySelector(".add-task-input");
 const addTaskBtn = document.querySelector(".add-task-btn");
 
 const tasksKey = "tasks";
-const tasksArr = localStorage.getItem(tasksKey).split("^");
+const tasksArr = localStorage.getItem(tasksKey)
+  ? localStorage.getItem(tasksKey).split("^")
+  : [];
 
 (function () {
   localStorage.setItem(tasksKey, tasksArr.join("^"));
