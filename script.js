@@ -4,26 +4,18 @@ const tasks = document.querySelector(".tasks");
 const addTaskInput = document.querySelector(".add-task-input");
 const addTaskBtn = document.querySelector(".add-task-btn");
 
-const tasksKey = "tasks";
-const tasksArr = localStorage.getItem(tasksKey)
-  ? localStorage.getItem(tasksKey).split("^")
+const tasksKeyLS = "tasks";
+const separator = "^";
+const tasksArr = localStorage.getItem(tasksKeyLS)
+  ? localStorage.getItem(tasksKeyLS).split(separator)
   : [];
 
-(function () {
-  localStorage.setItem(tasksKey, tasksArr.join("^"));
-})();
+localStorage.setItem(tasksKeyLS, tasksArr.join(separator));
 
-const showTasks = function () {
+const updateUI = function () {
   tasks.innerHTML = "";
-  tasksArr.forEach(function (task) {
-    tasks.insertAdjacentHTML("beforeend", task);
-  });
-};
 
-addTaskBtn.addEventListener("click", function (event) {
-  event.preventDefault();
-  const task = addTaskInput.value;
-  if (task !== "") {
+  tasksArr.forEach(function (task) {
     const taskHtml = `
     <div class="task margin-bottom">
       <input class="task-value" type="text" value="${task}" />
@@ -31,11 +23,22 @@ addTaskBtn.addEventListener("click", function (event) {
       <button class="delete-btn">&#128465;</button>
     </div>
     `;
-    addTaskInput.value = "";
-    tasksArr.push(taskHtml);
-    localStorage.setItem(tasksKey, tasksArr.join("^"));
-    showTasks();
+
+    tasks.insertAdjacentHTML("beforeend", taskHtml);
+  });
+};
+
+addTaskBtn.addEventListener("click", function (event) {
+  event.preventDefault();
+  const task = addTaskInput.value;
+
+  if (task !== "") {
+    tasksArr.push(task);
+    localStorage.setItem(tasksKeyLS, tasksArr.join(separator));
+
+    updateUI();
   }
+  addTaskInput.value = "";
 });
 
-showTasks();
+updateUI();
