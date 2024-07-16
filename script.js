@@ -1,57 +1,36 @@
 "use strict";
 
-const tasks = document.querySelector(".tasks");
+const tasksContainer = document.querySelector(".tasks");
 const addTaskInput = document.querySelector(".add-task-input");
 const addTaskBtn = document.querySelector(".add-task-btn");
 
 const separator = "^@&#&@^";
 
-const tasksKeyLS = "tasks";
-const counterKeyLS = "count";
+const activeTasksKeyLS = "tasks";
 
-const tasksArr = localStorage.getItem(tasksKeyLS)
-  ? localStorage.getItem(tasksKeyLS).split(separator)
+const activeTasksArr = localStorage.getItem(activeTasksKeyLS)
+  ? localStorage.getItem(activeTasksKeyLS).split(separator)
   : [];
-let counter = localStorage.getItem(counterKeyLS)
-  ? localStorage.getItem(counterKeyLS)
-  : 0;
 
-localStorage.setItem(tasksKeyLS, tasksArr.join(separator));
-localStorage.setItem(counterKeyLS, counter);
+localStorage.setItem(activeTasksKeyLS, activeTasksArr.join(separator));
 
-const createTaskElement = function (taskValue, id) {
+const createTaskElement = function (taskValue) {
   const taskHtml = `
     <div class="task margin-bottom">
       <input class="task-value" type="text" value="${taskValue}" />
       <button class="complete-btn">&#10004;</button>
-      <button class="delete-btn" id="${id}">&#128465;</button>
+      <button class="delete-btn">&#128465;</button>
     </div>
     `;
-  tasks.insertAdjacentHTML("beforeend", taskHtml);
+  tasksContainer.insertAdjacentHTML("beforeend", taskHtml);
 };
 
 const updateUI = function () {
-  tasks.innerHTML = "";
+  tasksContainer.innerHTML = "";
 
-  tasksArr.forEach(function (taskValue) {
-    const id = `delete-${counter}`;
-    createTaskElement(taskValue, id);
-
-    document
-      .querySelector(`#${id}`)
-      .addEventListener("click", function (event) {
-        const parentTask = event.target.parentElement;
-        const taskTextForDelete = parentTask.querySelector("input").value;
-        const indexForDelete = tasksArr.indexOf(taskTextForDelete);
-
-        tasksArr.splice(indexForDelete, 1);
-        updateUI();
-
-        localStorage.setItem(tasksKeyLS, tasksArr.join(separator));
-      });
-    counter++;
+  activeTasksArr.forEach(function (taskValue) {
+    createTaskElement(taskValue);
   });
-  localStorage.setItem(counterKeyLS, counter);
 };
 
 addTaskBtn.addEventListener("click", function (event) {
@@ -59,12 +38,26 @@ addTaskBtn.addEventListener("click", function (event) {
   const task = addTaskInput.value;
 
   if (task !== "") {
-    tasksArr.push(task);
-    localStorage.setItem(tasksKeyLS, tasksArr.join(separator));
+    activeTasksArr.push(task);
+    localStorage.setItem(activeTasksKeyLS, activeTasksArr.join(separator));
 
     updateUI();
   }
   addTaskInput.value = "";
+});
+
+tasksContainer.addEventListener("click", function (event) {
+  const clickedElement = event.target;
+  if (clickedElement.classList.contains("delete-btn")) {
+    const taskTextForDelete =
+      clickedElement.parentElement.querySelector("input").value;
+    const indexForDelete = activeTasksArr.indexOf(taskTextForDelete);
+
+    activeTasksArr.splice(indexForDelete, 1);
+    updateUI();
+
+    localStorage.setItem(activeTasksKeyLS, activeTasksArr.join(separator));
+  }
 });
 
 updateUI();

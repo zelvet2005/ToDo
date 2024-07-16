@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: rgb(122, 42, 197);
+  background: linear-gradient(to right, rgb(64, 160, 224), rgb(31, 99, 145));
 }
 
 .todo-container {
