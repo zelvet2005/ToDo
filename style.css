@@ -19,3 +19,15 @@ body {
 .margin-bottom {
   margin-bottom: 1vh;
 }
+
+.no-display {
+  display: none;
+}
+
+.current-tab {
+  background-color: rgb(176, 195, 253); /* temporary */
+}
+
+.finished-task-value {
+  text-decoration: line-through;
+}
