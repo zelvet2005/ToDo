@@ -25,38 +25,46 @@ const finishedTasksArr = localStorage.getItem(finishedTasksKeyLS)
 localStorage.setItem(activeTasksKeyLS, activeTasksArr.join(separator));
 localStorage.setItem(finishedTasksKeyLS, finishedTasksArr.join(separator));
 
-const deleteTaskFromArr = function (element, isFinished = false) {
+let isFinished = false;
+
+let tasksArr = activeTasksArr;
+let keyLS = activeTasksKeyLS;
+let container = activeTasksContainer;
+let taskValueClass = "active-task-value";
+let redoOrCompleteBtnClass = "complete-btn";
+let unicodeBtn = "&#10004;";
+
+const switcher = function () {
+  tasksArr = isFinished ? finishedTasksArr : activeTasksArr;
+  keyLS = isFinished ? finishedTasksKeyLS : activeTasksKeyLS;
+  container = isFinished ? finishedTasksContainer : activeTasksContainer;
+  taskValueClass = isFinished ? "finished-task-value" : "active-task-value";
+  redoOrCompleteBtnClass = isFinished ? "redo-btn" : "complete-btn";
+  unicodeBtn = isFinished ? "&#8635;" : "&#10004;";
+};
+
+const deleteTaskFromArr = function (element) {
   const taskTextForDelete = element.parentElement.querySelector("input").value;
-  const tasksArr = isFinished ? finishedTasksArr : activeTasksArr;
   const indexForDelete = tasksArr.indexOf(taskTextForDelete);
 
   tasksArr.splice(indexForDelete, 1);
-
-  const key = isFinished ? finishedTasksKeyLS : activeTasksKeyLS;
-  localStorage.setItem(key, tasksArr.join(separator));
+  localStorage.setItem(keyLS, tasksArr.join(separator));
 
   return taskTextForDelete;
 };
 
-const createTaskElement = function (taskValue, isFinished = false) {
+const createTaskElement = function (taskValue) {
   const taskHtml = `
     <div class="task margin-bottom">
-      <input class="${
-        isFinished ? "finished-task-value" : "active-task-value"
-      }" type="text" value="${taskValue}" />
-      <button class="${isFinished ? "redo-btn" : "complete-btn"}">${
-    isFinished ? "&#8635;" : "&#10004;"
-  }</button>
+      <input class="${taskValueClass}" type="text" value="${taskValue}" />
+      <button class="${redoOrCompleteBtnClass}">${unicodeBtn}</button>
       <button class="delete-btn">&#128465;</button>
     </div>
     `;
-  const container = isFinished ? finishedTasksContainer : activeTasksContainer;
   container.insertAdjacentHTML("beforeend", taskHtml);
 };
 
-const updateUI = function (isFinished = false) {
-  const container = isFinished ? finishedTasksContainer : activeTasksContainer;
-  const tasksArr = isFinished ? finishedTasksArr : activeTasksArr;
+const updateUI = function () {
   container.innerHTML = "";
 
   tasksArr.forEach(function (taskValue) {
@@ -66,24 +74,22 @@ const updateUI = function (isFinished = false) {
 
 const taskButtonsHandler = function (event) {
   const clickedElement = event.target;
-  const isFinished = this;
-  const redoOrCompleteClass = isFinished ? "redo-btn" : "complete-btn";
+  if (clickedElement.tagName.toLowerCase() === "input") return;
   if (clickedElement.classList.contains("delete-btn")) {
-    deleteTaskFromArr(clickedElement, isFinished);
-  } else if (clickedElement.classList.contains(redoOrCompleteClass)) {
-    const task = deleteTaskFromArr(clickedElement, isFinished);
+    deleteTaskFromArr(clickedElement);
+  } else if (clickedElement.classList.contains(redoOrCompleteBtnClass)) {
+    const task = deleteTaskFromArr(clickedElement);
 
-    const tasksArr = isFinished ? activeTasksArr : finishedTasksArr;
-    tasksArr.push(task);
-    const key = isFinished ? activeTasksKeyLS : finishedTasksKeyLS;
-    localStorage.setItem(key, tasksArr.join(separator));
+    const toTasksArr = isFinished ? activeTasksArr : finishedTasksArr;
+    const toKeyLS = isFinished ? activeTasksKeyLS : finishedTasksKeyLS;
+    toTasksArr.push(task);
+    localStorage.setItem(toKeyLS, toTasksArr.join(separator));
   }
-  updateUI(false);
-  updateUI(true);
+  updateUI();
 };
 
-activeTasksContainer.addEventListener("click", taskButtonsHandler.bind(false));
-finishedTasksContainer.addEventListener("click", taskButtonsHandler.bind(true));
+activeTasksContainer.addEventListener("click", taskButtonsHandler);
+finishedTasksContainer.addEventListener("click", taskButtonsHandler);
 
 addTaskBtn.addEventListener("click", function (event) {
   event.preventDefault();
@@ -114,7 +120,13 @@ navigation.addEventListener("click", function (event) {
       finishedTab.classList.remove("no-display");
     }
   }
+  if (clickedElement.textContent === "Active") {
+    isFinished = false;
+  } else {
+    isFinished = true;
+  }
+  switcher();
+  updateUI();
 });
 
-updateUI(false);
-updateUI(true);
+updateUI();
