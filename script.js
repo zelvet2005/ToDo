@@ -4,6 +4,7 @@ const finishedTab = document.querySelector(".finished-tab");
 const activeTab = document.querySelector(".active-tab");
 const navigation = document.querySelector(".navigation");
 
+const tasksContainer = document.querySelector(".tasks-container");
 const finishedTasksContainer = document.querySelector(".finished-tasks");
 const activeTasksContainer = document.querySelector(".active-tasks");
 
@@ -33,6 +34,8 @@ let container = activeTasksContainer;
 let taskValueClass = "active-task-value";
 let redoOrCompleteBtnClass = "complete-btn";
 let unicodeBtn = "&#10004;";
+
+let currTaskValue;
 
 const switcher = function () {
   tasksArr = isFinished ? finishedTasksArr : activeTasksArr;
@@ -72,7 +75,7 @@ const updateUI = function () {
   });
 };
 
-const taskButtonsHandler = function (event) {
+tasksContainer.addEventListener("click", function (event) {
   const clickedElement = event.target;
   if (clickedElement.tagName.toLowerCase() === "input") return;
   if (clickedElement.classList.contains("delete-btn")) {
@@ -86,10 +89,21 @@ const taskButtonsHandler = function (event) {
     localStorage.setItem(toKeyLS, toTasksArr.join(separator));
   }
   updateUI();
-};
+});
 
-activeTasksContainer.addEventListener("click", taskButtonsHandler);
-finishedTasksContainer.addEventListener("click", taskButtonsHandler);
+tasksContainer.addEventListener("focusin", function (event) {
+  if (event.target.classList.contains("add-task-input")) return;
+
+  currTaskValue = event.target.value;
+});
+
+tasksContainer.addEventListener("focusout", function (event) {
+  if (event.target.classList.contains("add-task-input")) return;
+
+  const index = tasksArr.indexOf(currTaskValue);
+  tasksArr[index] = event.target.value;
+  localStorage.setItem(keyLS, tasksArr.join(separator));
+});
 
 addTaskBtn.addEventListener("click", function (event) {
   event.preventDefault();
@@ -115,15 +129,12 @@ navigation.addEventListener("click", function (event) {
     if (clickedElement.textContent.toLowerCase() === "active") {
       activeTab.classList.remove("no-display");
       finishedTab.classList.add("no-display");
+      isFinished = false;
     } else {
       activeTab.classList.add("no-display");
       finishedTab.classList.remove("no-display");
+      isFinished = true;
     }
-  }
-  if (clickedElement.textContent === "Active") {
-    isFinished = false;
-  } else {
-    isFinished = true;
   }
   switcher();
   updateUI();
