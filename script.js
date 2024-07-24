@@ -1,18 +1,14 @@
 "use strict";
 
-const finishedTab = document.querySelector(".finished-tab");
-const activeTab = document.querySelector(".active-tab");
 const navigation = document.querySelector(".navigation");
-
 const tasksContainer = document.querySelector(".tasks-container");
-const finishedTasksContainer = document.querySelector(".finished-tasks");
+const activeTab = document.querySelector(".active-tab");
 const activeTasksContainer = document.querySelector(".active-tasks");
-
+const finishedTasksContainer = document.querySelector(".finished-tab");
 const addTaskInput = document.querySelector(".add-task-input");
 const addTaskBtn = document.querySelector(".add-task-btn");
 
 const separator = "^@&#&@^";
-
 const activeTasksKeyLS = "activeTasks";
 const finishedTasksKeyLS = "finishedTasks";
 
@@ -71,7 +67,7 @@ const updateUI = function () {
   container.innerHTML = "";
 
   tasksArr.forEach(function (taskValue) {
-    createTaskElement(taskValue, isFinished);
+    createTaskElement(taskValue);
   });
 };
 
@@ -128,11 +124,11 @@ navigation.addEventListener("click", function (event) {
 
     if (clickedElement.textContent.toLowerCase() === "active") {
       activeTab.classList.remove("no-display");
-      finishedTab.classList.add("no-display");
+      finishedTasksContainer.classList.add("no-display");
       isFinished = false;
     } else {
       activeTab.classList.add("no-display");
-      finishedTab.classList.remove("no-display");
+      finishedTasksContainer.classList.remove("no-display");
       isFinished = true;
     }
   }
