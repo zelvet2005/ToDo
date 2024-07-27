@@ -6,6 +6,11 @@ body {
   background: linear-gradient(to right, rgb(64, 160, 224), rgb(31, 99, 145));
 }
 
+input {
+  height: 25px;
+  font-size: 16px;
+}
+
 .todo-container {
   width: 80vh;
   min-height: 35vh;
@@ -24,10 +29,52 @@ body {
   display: none;
 }
 
-.current-tab {
-  background-color: rgb(176, 195, 253); /* temporary */
-}
-
 .finished-task-value {
   text-decoration: line-through;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 1.5vh;
+  margin-bottom: 20px;
+}
+
+.nav-btn {
+  width: 10vh;
+  border-radius: 10px;
+  border: 1.5px solid black;
+  background-color: white;
+  transition: 0.4s;
+}
+
+.current-tab {
+  background: linear-gradient(to right, rgb(194, 228, 251), rgb(155, 210, 246));
+}
+
+.add-task form,
+.task {
+  display: flex;
+  gap: 0;
+}
+
+.navigation button:not(.current-tab):hover {
+  background-color: rgb(233, 233, 233);
+}
+
+.add-task {
+  margin-bottom: 15px;
+}
+
+.add-task-input {
+  width: 94%;
+}
+
+.task input {
+  width: 90%;
+}
+
+.add-task-btn,
+.task button {
+  width: 6%;
 }
