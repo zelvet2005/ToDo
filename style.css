@@ -8,7 +8,20 @@ body {
 
 input {
   height: 25px;
-  font-size: 16px;
+  font-size: 15px;
+}
+
+button {
+  transition: 0.4s;
+}
+
+input:focus,
+button:focus {
+  outline: none;
+}
+
+button:not(.current-tab):hover {
+  cursor: pointer;
 }
 
 .todo-container {
@@ -33,11 +46,15 @@ input {
   text-decoration: line-through;
 }
 
+.add-task,
+.navigation {
+  margin-bottom: 20px;
+}
+
 .navigation {
   display: flex;
   flex-direction: row-reverse;
   gap: 1.5vh;
-  margin-bottom: 20px;
 }
 
 .nav-btn {
@@ -45,7 +62,6 @@ input {
   border-radius: 10px;
   border: 1.5px solid black;
   background-color: white;
-  transition: 0.4s;
 }
 
 .current-tab {
@@ -62,12 +78,33 @@ input {
   background-color: rgb(233, 233, 233);
 }
 
-.add-task {
-  margin-bottom: 15px;
+.add-task-btn,
+.add-task-input,
+form {
+  border-radius: 15px;
+}
+
+form {
+  border: 1px solid rgb(0, 0, 0);
 }
 
 .add-task-input {
   width: 94%;
+  border: 0;
+  padding-left: 6px;
+}
+
+.add-task-btn {
+  font-size: 16px;
+  border: 1px solid black;
+  border-right: 0;
+  border-bottom: 0;
+  border-top: 0;
+  background-color: rgb(175, 221, 251);
+}
+
+.add-task-btn:hover {
+  background-color: rgb(192, 227, 251);
 }
 
 .task input {
@@ -76,5 +113,5 @@ input {
 
 .add-task-btn,
 .task button {
-  width: 6%;
+  width: 7%;
 }
