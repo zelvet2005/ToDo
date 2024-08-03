@@ -162,4 +162,20 @@ form {
     width: 70vw;
     min-height: 35vh;
   }
+  .nav-btn {
+    width: 15vw;
+    height: 2.5vw;
+    font-size: 19px;
+  }
+  .add-task-input {
+    height: 3vw;
+  }
+  /* .add-task-btn {
+    font-size: 16px;
+    border: 1px solid black;
+    border-right: 0;
+    border-bottom: 0;
+    border-top: 0;
+    background-color: rgb(175, 221, 251);
+  } */
 }
