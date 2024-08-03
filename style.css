@@ -163,12 +163,12 @@ form {
     min-height: 35vh;
   }
   .nav-btn {
-    width: 15vw;
-    height: 2.5vw;
+    width: 15vh;
+    height: 2.5vh;
     font-size: 19px;
   }
   .add-task-input {
-    height: 3vw;
+    height: 3vh;
   }
   /* .add-task-btn {
     font-size: 16px;
