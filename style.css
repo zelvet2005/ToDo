@@ -152,3 +152,14 @@ form {
 .redo-btn:hover {
   background-color: rgb(152, 194, 223);
 }
+
+@media (max-width: 600px) {
+  body {
+    background: none;
+    background-color: rgb(64, 160, 224);
+  }
+  .todo-container {
+    width: 70vw;
+    min-height: 35vh;
+  }
+}
