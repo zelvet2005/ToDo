@@ -159,33 +159,33 @@ form {
     background-color: rgb(64, 160, 224);
   }
   input {
-    font-size: 20px;
+    font-size: 24px;
   }
   button:not(.nav-btn) {
-    font-size: 18px;
+    font-size: 20px;
   }
   .todo-container {
     width: 70%;
   }
   .nav-btn {
-    height: 40px;
-    font-size: 15px;
+    height: 45px;
+    font-size: 20px;
   }
   .add-task-input {
-    height: 50px;
-  }
-  .add-task-btn {
-    width: 9%;
-  }
-  .task {
     height: 60px;
   }
+  .add-task-btn {
+    width: 10%;
+  }
+  .task {
+    height: 70px;
+  }
   .task input {
-    height: 50px;
+    height: 60px;
     width: 80%;
   }
   .task button {
-    width: 7%;
-    height: 35px;
+    width: 8%;
+    height: 40px;
   }
 }
