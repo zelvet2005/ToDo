@@ -158,24 +158,34 @@ form {
     background: none;
     background-color: rgb(64, 160, 224);
   }
+  input {
+    font-size: 20px;
+  }
+  button:not(.nav-btn) {
+    font-size: 18px;
+  }
   .todo-container {
-    width: 70vw;
-    min-height: 35vh;
+    width: 70%;
   }
   .nav-btn {
-    width: 15vh;
-    height: 2.5vh;
-    font-size: 19px;
+    height: 40px;
+    font-size: 15px;
   }
   .add-task-input {
-    height: 3vh;
+    height: 50px;
   }
-  /* .add-task-btn {
-    font-size: 16px;
-    border: 1px solid black;
-    border-right: 0;
-    border-bottom: 0;
-    border-top: 0;
-    background-color: rgb(175, 221, 251);
-  } */
+  .add-task-btn {
+    width: 9%;
+  }
+  .task {
+    height: 60px;
+  }
+  .task input {
+    height: 50px;
+    width: 80%;
+  }
+  .task button {
+    width: 7%;
+    height: 35px;
+  }
 }
