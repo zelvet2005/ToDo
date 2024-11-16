@@ -27,7 +27,7 @@ button:not(.current-tab):hover {
 .todo-container {
   width: 80vh;
   min-height: 35vh;
-  margin: 20vh auto 0 auto;
+  margin: 20vh auto 8vh auto;
   padding: 1.5vh;
   background-color: rgb(255, 255, 255);
   border-radius: 4vh;
@@ -159,7 +159,11 @@ form {
     background-color: rgb(64, 160, 224);
   }
   input {
-    font-size: 24px;
+    font-size: 28px;
+  }
+  .todo-container {
+    width: 90vw;
+    margin: 10vh auto 5vh auto;
   }
   button:not(.nav-btn) {
     font-size: 20px;
@@ -168,24 +172,24 @@ form {
     width: 70%;
   }
   .nav-btn {
-    height: 45px;
-    font-size: 20px;
+    height: 55px;
+    font-size: 28px;
   }
   .add-task-input {
-    height: 60px;
+    height: 65px;
   }
   .add-task-btn {
     width: 10%;
   }
   .task {
-    height: 70px;
+    height: 75px;
   }
   .task input {
-    height: 60px;
+    height: 65px;
     width: 80%;
   }
   .task button {
     width: 8%;
-    height: 40px;
+    height: 45px;
   }
 }
