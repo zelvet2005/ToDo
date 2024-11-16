@@ -162,7 +162,7 @@ form {
     font-size: 30px;
   }
   .todo-container {
-    width: 85vw;
+    width: 85%;
     margin: 15vh auto 5vh auto;
     padding: 1vh;
   }
@@ -179,7 +179,7 @@ form {
   }
   .add-task-btn {
     width: 15%;
-    font-size: 32px;
+    font-size: 40px;
   }
   .task {
     height: 80px;
