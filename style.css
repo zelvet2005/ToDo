@@ -169,12 +169,9 @@ form {
   button:not(.nav-btn) {
     font-size: 20px;
   }
-  .todo-container {
-    width: 70%;
-  }
   .nav-btn {
     height: 60px;
-    width: 12vh;
+    width: 18vh;
     font-size: 30px;
   }
   .add-task-input {
@@ -182,18 +179,18 @@ form {
   }
   .add-task-btn {
     width: 15%;
-    font-size: 24px;
+    font-size: 32px;
   }
   .task {
-    height: 75px;
+    height: 80px;
   }
   .task input {
-    height: 65px;
+    height: 70px;
     width: 78%;
   }
   .task button {
-    font-size: 20px;
+    font-size: 24px;
     width: 10%;
-    height: 55px;
+    height: 60px;
   }
 }
