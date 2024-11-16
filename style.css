@@ -166,20 +166,17 @@ form {
     margin: 15vh auto 5vh auto;
     padding: 1vh;
   }
-  button:not(.nav-btn) {
-    font-size: 20px;
-  }
   .nav-btn {
     height: 60px;
-    width: 18vh;
+    width: 15vh;
     font-size: 30px;
   }
   .add-task-input {
-    height: 70px;
+    height: 75px;
   }
   .add-task-btn {
     width: 15%;
-    font-size: 40px;
+    font-size: 30px;
   }
   .task {
     height: 80px;
@@ -189,8 +186,8 @@ form {
     width: 78%;
   }
   .task button {
-    font-size: 24px;
+    font-size: 25px;
     width: 10%;
-    height: 60px;
+    height: 62px;
   }
 }
