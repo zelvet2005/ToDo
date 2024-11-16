@@ -159,7 +159,7 @@ form {
     background-color: rgb(64, 160, 224);
   }
   input {
-    font-size: 30px;
+    font-size: 32px;
   }
   .todo-container {
     width: 85%;
@@ -168,7 +168,7 @@ form {
   }
   .nav-btn {
     height: 60px;
-    width: 15vh;
+    width: 12vh;
     font-size: 30px;
   }
   .add-task-input {
@@ -186,8 +186,8 @@ form {
     width: 78%;
   }
   .task button {
-    font-size: 25px;
+    font-size: 30px;
     width: 10%;
-    height: 62px;
+    height: 65px;
   }
 }
